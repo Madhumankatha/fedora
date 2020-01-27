@@ -1,0 +1,66 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<dos.h>
+#include<time.h>
+voidmergesort(int *,int,int,int);
+void merge(int *,int,int,int);
+void main()
+{
+	floatdur;
+	int a[100],n,i;
+	clock_tst,en;
+	clrscr();
+	cout<<"enter the size of the array"<<endl;
+	cin>>n;
+	cout<<"array is"<<endl;
+	for(i=0;i<n;i++)
+	{
+		a[i]=rand()%100;
+		cout<<a[i]<<endl;
+	}
+	st=clock();
+	mergesort(a,0,n-1,n);
+	en=clock();
+	dur=(en-st)/CLOCKS_PER_SEC;
+	cout<<"sorted elements are"<<endl;
+	for(i=0;i<n;i++)
+	{
+		cout<<a[i]<<endl;
+	}
+	cout<<"time take is"<<dur<<" seconds"<<endl;
+	getch();
+}
+voidmergesort(int a[],intlow,inthigh,int n)
+{
+	int mid;
+	if(low<high)
+	{
+		delay(200);
+		mid=(low+high)/2;
+		mergesort(a,low,mid,n);
+		mergesort(a,mid+1,high,n);
+		merge(a,low,mid,high);
+	}
+}
+void merge(int a[],intlow,intmid,int high)
+{
+	inti,j,k,h,b[100];
+	h=i=low;
+	j=mid+1;
+	while(h<=mid && j<=high)
+	{
+		if(a[h]<a[j])
+		b[i++]=a[h++];
+		else
+		b[i++]=a[j++];
+	}
+	if(h>mid)
+	for(k=j;k<=high;k++)
+	b[i++]=a[k];
+	else
+	for(k=h;k<=mid;k++)
+	b[i++]=a[k];
+	for(k=low;k<=high;k++)
+	a[k]=b[k];
+}

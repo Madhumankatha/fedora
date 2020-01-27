@@ -1,0 +1,49 @@
+#include<iostream.h>
+#include<conio.h>
+#include<time.h>
+#include<dos.h>
+#include<stdlib.h>
+ int a[100],n,k,i,j,temp;
+  void read()
+   {
+    cout<<"\n how many elements";
+    cin>>n;
+    cout<<"\n elements of array";
+    for(i=0;i<n;i++)
+     {
+      a[i]=rand()%100;
+      cout<<" "<<a[i];
+   }
+   delay(100);
+ }
+void insertion_sort()
+ {
+  for(k=1;k<n;k++)
+   {
+     temp=a[k];
+     j=k-1;
+     while(temp<a[i]&&j>=0)
+      {
+       a[j+1]=a[j];
+       j=j-1;
+    }
+    a[j+1]=temp;
+  }
+  delay(100);
+  cout<<"\n element of array after soting:\n";
+  for(i=0;i<n-1;i++)
+  cout<<" "<<a[i];
+ }
+ void main()
+  {
+   float dur;
+   clock_t t1,t2;
+   clrscr();
+   read();
+   t1=clock();
+   insertion_sort();
+   t2=clock();
+   dur=(t2-t1)/CLOCKS_PER_SEC;
+   cout<<"\n time taken is"<<dur<<"seconds\n";
+   getch();
+  }

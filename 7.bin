@@ -1,0 +1,65 @@
+#include<iostream.h>
+#include<conio.h>
+#include<dos.h>
+#include<time.h>
+#include<stdlib.h>
+void quicksort(int a[],int,int);
+int partition(int a[],int,int);
+void main()
+{
+	int n,a[10],i,j,low,high;
+	float dur;
+	clock_t st,en;
+	clrscr();
+	cout<<"\n enter the size:\n ";
+	cin>>n;
+	cout<<"\n the array is: \n";
+	for(i=0;i<n;i++)
+	{
+	   a[i]=rand()%100;
+	   cout<<" "<<a[i];
+	}
+	st=clock();
+	quicksort(a,0,n-1);
+	en=clock();
+	dur=(en-st)/CLOCKS_PER_SEC;
+	cout<<"\narray after sorting\n";
+	for(i=0;i<n;i++)
+	cout<<" "<<a[i];
+	cout<<"\n the time taken is "<<dur<<"seconds";
+	getch();
+}
+void quicksort(int a[],int low, int high)
+{
+	int k;
+	if(low<high)
+	{
+	   delay(200);
+	   k=partition(a,low ,high);
+	   quicksort(a,low,k);
+	   quicksort(a,k+1,high);
+	}
+}
+int partition(int a[],int low, int high)
+{
+	int i=low,temp;
+	int j=high+1;
+	int pivot=a[low];
+	while(i<j)
+	{
+	  do i++;
+	  while(a[i]<=pivot&&i<high);
+	  do j--;
+	  while(a[j]>=pivot&&j>low);
+	  if(i<j)
+	  {
+	    temp=a[i];
+	    a[i]=a[j];
+	    a[j]=temp;
+	  }
+	}
+	temp=a[j];
+	a[j]=a[low];
+	a[low]=temp;
+	return j;
+}
